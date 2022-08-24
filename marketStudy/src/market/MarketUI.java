@@ -17,7 +17,7 @@ public class MarketUI {
 
 			case 1: {
 				System.out.println("물건 조회");
-				System.out.println(p.test);
+				p.showProduct();
 				break;
 			}
 			case 2: {
@@ -25,17 +25,25 @@ public class MarketUI {
 				System.out.println("물건 등록");
 				System.out.print("물건명 ");
 				System.out.print("물건 가격 ");
-				p.setProduct(sc.next(), sc.nextInt());
-				
+				//p.setProduct(sc.next(), sc.nextInt());
+				p.addProduct(sc.next(), sc.nextInt());
 				break;
 			}
 			case 3: {
 				System.out.println("물건 삭제");
 				System.out.print("삭제할 물건 입력 : ");
-				p.test.remove(sc.next());
+				String n = sc.next();
+				p.removeProduct(n);
 				break;
 			}
 			case 4: {
+				p.showProduct();
+				System.out.println("상품 입력 : ");
+				String n = sc.next();
+				p.noticePrice(n);
+				break;
+			}
+			case 5: {
 				System.out.println("종료");
 				System.exit(0);
 				
