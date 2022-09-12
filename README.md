@@ -8,8 +8,10 @@
 
 3. 경고 표시 완료, ProductList 추가, 상품 등록 수정
 
-4-1) ProductManagement 생성 (addProduct, showProduct .. 등 옮김), 가격 음수 확인 메소드 추가
+4-1. ProductManagement 생성 (addProduct, showProduct .. 등 옮김), 가격 음수 확인 메소드 추가
 
-4-2) reviseProduct 추가
+4-2. reviseProduct 추가
+
+5. File I/O 사용한 ProductFile 생성, 기존 코드 수정
 
 기능 추가 예정
