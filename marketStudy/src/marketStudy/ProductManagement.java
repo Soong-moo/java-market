@@ -1,13 +1,16 @@
 package marketStudy;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class ProductManagement {
-
-	ProductList pro = new ProductList();
+	
+	public static ArrayList<Product> productList = new ArrayList<Product>();
 	Scanner sc = new Scanner(System.in);
-
+	ProductFile pf = new ProductFile();
+	
+	
 	// 상품 추가 (1 parameter test)
 	public void addProduct(String name) {
 		System.out.println(name);
@@ -15,42 +18,39 @@ public class ProductManagement {
 
 	// 상품 추가
 	public void addProduct(String name, int price) {
-		Iterator<Product> itr = pro.a.iterator();
+		Iterator<Product> itr = productList.iterator();
 		while (itr.hasNext()) {
 			Product product = itr.next();
 			if (product.getName().equals(name)) {
 				System.out.println(name + "은(는) 이미 있는 상품입니다.");
 				return;
 			}
-			if (!product.checkPrice(price)) {
+			if (!product.isCheckingPrice(price)) {
 				System.out.println("가격은 음수가 될 수 없습니다.");
 				return;
 			}
 		}
-
-		/*
-		 * if (price < 0) { System.out.println("가격은 음수가 될 수 없습니다."); return; }
-		 */
 		Product p = new Product(name, price);
-		pro.a.add(p);
+		pf.fileInput(name,price);
+		productList.add(p);
 	}
 
 	// 상품 조회
 	public void showProduct() {
-		if (pro.a.size() == 0) {
+		if (productList.size() == 0) {
 			System.out.println("상품 없음");
 			return;
 		}
-		Iterator<Product> itr = pro.a.iterator();
+		Iterator<Product> itr = productList.iterator();
 		while (itr.hasNext()) {
 			Product product = itr.next();
-			System.out.printf("%s  %d\n", product.getName(), product.getPrice());
+			System.out.printf("%s %d\n", product.getName(), product.getPrice());
 		}
 	}
 
 	// 상품 제거
 	public void removeProduct(String name) {
-		Iterator<Product> itr = pro.a.iterator();
+		Iterator<Product> itr = productList.iterator();
 		while (itr.hasNext()) {
 			Product product = itr.next();
 			if (product.getName().equals(name)) {
@@ -63,7 +63,7 @@ public class ProductManagement {
 
 	// 물건 수정
 	public void reviseProduct(String name) {
-		Iterator<Product> itr = pro.a.iterator();
+		Iterator<Product> itr = productList.iterator();
 		while (itr.hasNext()) {
 			Product product = itr.next();
 			if (product.getName().equals(name)) {
@@ -78,11 +78,10 @@ public class ProductManagement {
 		}
 		System.out.println("상품이 존재하지 않습니다.");
 	}
-	
-	
+
 	// 가격 알림
 	public void noticePrice(String name) {
-		Iterator<Product> itr = pro.a.iterator();
+		Iterator<Product> itr = productList.iterator();
 		while (itr.hasNext()) {
 			Product product = itr.next();
 			if (product.getName().equals(name)) {
@@ -91,4 +90,5 @@ public class ProductManagement {
 			}
 		}
 	}
+
 }

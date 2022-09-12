@@ -1,0 +1,7 @@
+apple/1000
+pear/2000
+peach/3000
+kiwi/4000
+wine/5000
+tomato/6000
+orange/7000

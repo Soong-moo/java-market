@@ -7,8 +7,6 @@ public class Product {
 	private String name;
 	private int price;
 
-	ProductList pro = new ProductList(); // ProductList의 a ArrayList 전역 변수 해제
-
 	public Product() {
 	};
 
@@ -40,11 +38,13 @@ public class Product {
 	}
 
 	// 가격 음수 판별
-	public boolean checkPrice(int price) {
-		if (price < 0)
+	public boolean isCheckingPrice(int price) {
+		if (price < 0) {
 			return false;
-		else
+		} 
+		else {
 			return true;
+		}
 	}
 
 }

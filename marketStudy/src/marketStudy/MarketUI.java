@@ -6,10 +6,14 @@ public class MarketUI {
 
 	Scanner sc = new Scanner(System.in);
 	ProductManagement p = new ProductManagement();
-
+	ProductFile pf = new ProductFile();
 	// 코드 정렬 (ctrl + shift + f)
 	public void start() {
 
+		//조회를 제외한 나머지 메소드 실행을 위해 switch문 밖으로
+		pf.fileOutput();
+		
+		
 		while (true) {
 			
 			System.out.printf("----------\n"
@@ -67,6 +71,7 @@ public class MarketUI {
 			}
 			case 6: {
 				System.out.println("종료");
+				pf.exitUI();
 				System.exit(0);
 
 			}
