@@ -5,3 +5,4 @@ kiwi/4000
 wine/5000
 tomato/6000
 orange/7000
+water/100

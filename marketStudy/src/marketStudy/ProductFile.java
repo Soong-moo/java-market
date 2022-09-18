@@ -29,7 +29,6 @@ public class ProductFile {
 				int price = Integer.parseInt(st.nextToken());
 				Product p = new Product(name, price);
 				ProductManagement.productList.add(p);
-
 			}
 			br.close();
 		} catch (IOException e) {

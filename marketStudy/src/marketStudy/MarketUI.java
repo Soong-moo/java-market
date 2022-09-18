@@ -4,17 +4,22 @@ import java.util.Scanner;
 
 public class MarketUI {
 
+	boolean isExecuting = true;
+	
 	Scanner sc = new Scanner(System.in);
 	ProductManagement p = new ProductManagement();
 	ProductFile pf = new ProductFile();
-	// 코드 정렬 (ctrl + shift + f)
-	public void start() {
-
+	// 코드 정렬 (Ctrl + shift + f)
+	public void start() throws Exception {
+		
+		//DB 연동
+		DB.SqlTest.main(null);
+		
 		//조회를 제외한 나머지 메소드 실행을 위해 switch문 밖으로
 		pf.fileOutput();
 		
 		
-		while (true) {
+		while (isExecuting) {
 			
 			System.out.printf("----------\n"
 					+ "1. 물건 조회\n"
@@ -37,7 +42,6 @@ public class MarketUI {
 				break;
 			}
 			case 2: {
-
 				System.out.println("물건 등록");
 				System.out.print("물건명 ");
 				String name = sc.nextLine();
@@ -72,6 +76,9 @@ public class MarketUI {
 			case 6: {
 				System.out.println("종료");
 				pf.exitUI();
+				DB.SqlTest.con.close();
+				DB.SqlTest.rs.close();
+				DB.SqlTest.st.close();
 				System.exit(0);
 
 			}
