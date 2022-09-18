@@ -14,4 +14,6 @@
 
 5. File I/O 사용한 ProductFile 생성, 기존 코드 수정
 
+6. DB Package 추가 및 연동(MySQL)
+
 기능 추가 예정
