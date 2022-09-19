@@ -1,10 +1,12 @@
 package DB;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class DBManagement {
 
 	SqlTest sql = new SqlTest();
+	Scanner sc = new Scanner(System.in);
 
 	public void show() {
 		try {
@@ -50,5 +52,40 @@ public class DBManagement {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void update(String name) {
+		try {
+			System.out.print("상품명 재입력 : ");
+			String newName = sc.nextLine();
+			System.out.print("상품 가격 재입력 : ");
+			int newPrice = sc.nextInt();
+			
+			String cmd = "UPDATE PRODUCT SET name = '" + newName + "', price = '" + newPrice + "' WHERE name = '" + name + "'";
+			
+			sql.pst = sql.con.prepareStatement(cmd);
+			int result = sql.pst.executeUpdate();
+			
+			System.out.println(result + "개가 성공적으로 수정되었습니다.");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void findPrice(String name) {
+		try {
+			String cmd = "SELECT PRICE FROM PRODUCT WHERE NAME = '" + name + "'";
+			
+			sql.st = sql.con.createStatement();
+			sql.rs = sql.st.executeQuery(cmd);
+					
+			sql.rs.next(); //행 선택
+			
+			int price = sql.rs.getInt("price");
+			System.out.println(name + "의 가격은 " + price + " 원 입니다.");
+					
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -9,10 +9,11 @@ public class MarketUI {
 	Scanner sc = new Scanner(System.in);
 	ProductManagement p = new ProductManagement();
 	ProductFile pf = new ProductFile();
+	
 	// 코드 정렬 (Ctrl + shift + f)
 	public void start() throws Exception {
 		
-		//DB 연동
+		//DB 연결
 		DB.SqlTest.main(null);
 		
 		//조회를 제외한 나머지 메소드 실행을 위해 switch문 밖으로
@@ -60,7 +61,7 @@ public class MarketUI {
 			}
 			case 4: {
 				System.out.println("가격 조회");
-				System.out.println("상품 입력 : ");
+				System.out.print("상품 입력 : ");
 				String n = sc.nextLine();
 				p.noticePrice(n);
 				break;

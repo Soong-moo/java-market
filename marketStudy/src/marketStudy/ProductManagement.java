@@ -58,23 +58,25 @@ public class ProductManagement {
 
 	// 물건 수정
 	public void reviseProduct(String name) {
-		Product product = p.compareName(name);
-		if (product != null) {
-			System.out.print("상품명 재입력 : ");
-			String newName = sc.nextLine();
-			System.out.print("상품 가격 재입력 : ");
-			int newPrice = sc.nextInt();
-			product.setName(newName);
-			product.setPrice(newPrice);
-			return;
-		} else {
-			System.out.println("상품이 존재하지 않습니다.");
-		}
+//		Product product = p.compareName(name);
+//		if (product != null) {
+//			System.out.print("상품명 재입력 : ");
+//			String newName = sc.nextLine();
+//			System.out.print("상품 가격 재입력 : ");
+//			int newPrice = sc.nextInt();
+//			product.setName(newName);
+//			product.setPrice(newPrice);
+//			return;
+//		} else {
+//			System.out.println("상품이 존재하지 않습니다.");
+		sql.update(name);
+//		}
 	}
 
 	// 가격 알림
 	public void noticePrice(String name) {
-		Product product = p.compareName(name);
-		System.out.println(product.getName() + "의 가격은 " + product.getPrice() + "원 입니다");
+//		Product product = p.compareName(name);
+//		System.out.println(product.getName() + "의 가격은 " + product.getPrice() + "원 입니다");
+		sql.findPrice(name);
 	}
 }
