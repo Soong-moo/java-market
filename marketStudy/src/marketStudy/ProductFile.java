@@ -36,7 +36,7 @@ public class ProductFile {
 		}
 	}
 
-	//종료 시 데이터 초기화 후 ArrayList에 있는 데이터 저장
+	// 종료 시 데이터 초기화 후 ArrayList에 있는 데이터 저장
 	public void exitUI() {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
 			Iterator<Product> itr = ProductManagement.productList.iterator();

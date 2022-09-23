@@ -25,13 +25,12 @@ public class ProductManagement {
 		}
 //		Product pro = new Product(name, price);
 //		pf.fileInput(name, price);
-//		productList.add(pro);
-		sql.add(name, price); //DB에 데이터 저장
+//		productList.add(pro) // or productList.add(new Product(name, price));
+		sql.add(name, price); // DB에 데이터 저장
 	}
 
 	// 상품 조회
 	public void showProduct() {
-		sql.show(); // DB 데이터 목록 출력
 //		if (productList.size() == 0) {
 //			System.out.println("상품 없음");
 //			return;
@@ -41,6 +40,7 @@ public class ProductManagement {
 //			Product product = itr.next();
 //			System.out.printf("%s %d\n", product.getName(), product.getPrice());
 //		}
+		sql.show(); // DB 데이터 목록 출력
 	}
 
 	// 상품 제거
