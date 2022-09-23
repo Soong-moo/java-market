@@ -14,4 +14,8 @@
 
 5. File I/O 사용한 ProductFile 생성, 기존 코드 수정
 
+6-1. DB Package 추가 및 연동(MySQL)
+
+6-2. 상품 조회, 입력, 삭제, 수정, 가격 찾기 DB 연동한 SQL문 코드 작성 완료
+
 기능 추가 예정

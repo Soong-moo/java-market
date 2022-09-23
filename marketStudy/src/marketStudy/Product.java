@@ -1,6 +1,6 @@
 package marketStudy;
 
-//import java.util.HashMap;
+import java.util.Iterator;
 
 public class Product {
 
@@ -14,12 +14,6 @@ public class Product {
 		this.name = name;
 		this.price = price;
 	}
-
-	/*
-	 * public static HashMap<String, Integer> test = new HashMap<String, Integer>();
-	 * 
-	 * public void setProduct(String name, int price) { test.put(name, price); }
-	 */
 
 	public String getName() {
 		return name;
@@ -41,10 +35,21 @@ public class Product {
 	public boolean isCheckingPrice(int price) {
 		if (price < 0) {
 			return false;
-		} 
-		else {
+		} else {
 			return true;
 		}
+	}
+
+	// 상품명 비교 (객체를 리턴?)
+	public Product compareName(String name) {
+		Iterator<Product> itr = ProductManagement.productList.iterator();
+		while (itr.hasNext()) {
+			Product product = itr.next();
+			if (product.getName().equals(name)) {
+				return product;
+			}
+		}
+		return null;
 	}
 
 }
