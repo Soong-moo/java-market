@@ -1,6 +1,6 @@
 package marketStudy;
 
-import java.util.Iterator;
+import DB.DBManagement;
 
 public class Product {
 
@@ -32,7 +32,7 @@ public class Product {
 	}
 
 	// 가격 음수 판별
-	public boolean isCheckingPrice(int price) {
+	public static boolean isCheckingPrice(int price) {
 		if (price < 0) {
 			return false;
 		} else {
@@ -40,16 +40,20 @@ public class Product {
 		}
 	}
 
-	// 상품명 비교 (객체를 리턴?)
-	public Product compareName(String name) {
-		Iterator<Product> itr = ProductManagement.productList.iterator();
-		while (itr.hasNext()) {
-			Product product = itr.next();
-			if (product.getName().equals(name)) {
-				return product;
-			}
-		}
-		return null;
+	
+	public boolean compare(String name) {
+		return new DBManagement().compare(name);
 	}
+	// 상품명 비교 (객체를 리턴?)
+//	public Product compareName(String name) {
+//		Iterator<Product> itr = pm.productList.iterator();
+//		while (itr.hasNext()) {
+//			Product product = itr.next();
+//			if (product.getName().equals(name)) {
+//				return product;
+//			}
+//		}
+//		return null;
+//	}
 
 }
