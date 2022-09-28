@@ -15,67 +15,69 @@ public class DBManagement {
 			sql.st = sql.con.createStatement();
 			sql.rs = sql.st.executeQuery(cmd);
 
-			while (sql.rs.next()) {
-				String name = sql.rs.getString("name");
-				int price = sql.rs.getInt("price");
-				System.out.printf("name : %s, price : %d\n", name, price);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean compare(String name) {
+		try {
+			String cmd = "SELECT * FROM PRODUCT WHERE name = '" + name + "'";
+			
+			sql.st = sql.con.createStatement();
+			sql.rs = sql.st.executeQuery(cmd);
+			if(sql.rs.next()) { // 입력한 상품과 동일한 상품이 존재하면 next() true 반환
+				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
-
-	public void add(String name, int price) {
+	
+	public boolean add(String name, int price) {
 		try {
 			String cmd = "INSERT INTO PRODUCT (name, price)" + "VALUES ('" + name + "', '" + price + "')";
-
+			
 			sql.st = sql.con.createStatement();
 			int result = sql.st.executeUpdate(cmd);
-
-			System.out.println(result + "개가 성공적으로 추가되었습니다.");
 		} catch (SQLException e) {
-			System.out.println(name + "와(과) 같은 상품이 있습니다.");
-			// e.printStackTrace();
-			return;
+			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
-	public void delete(String name) {
+	public int delete(String name) {
+		int result = 0;
 		try {
 			String cmd = "DELETE FROM PRODUCT WHERE NAME = '" + name + "'";
 
 			sql.st = sql.con.createStatement();
-			int result = sql.st.executeUpdate(cmd);
-
-			System.out.println(result + "개가 성공적으로 삭제되었습니다.");
+			result = sql.st.executeUpdate(cmd);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
-	public void update(String name) {
+	public int update(String name, String newName, int newPrice) {
+		int result = 0;
 		try {
-			System.out.print("상품명 재입력 : ");
-			String newName = sc.nextLine();
-			System.out.print("상품 가격 재입력 : ");
-			int newPrice = sc.nextInt();
-			
-			sc.nextLine(); // buffer 비움
 
-			String cmd = "UPDATE PRODUCT SET name = '" + newName + "', price = '" + newPrice + "' WHERE name = '" + name
-					+ "'";
+			String cmd = "UPDATE PRODUCT SET name = '" + newName + "', price = '" + newPrice + "' WHERE name = '" + name + "'";
 
 			sql.pst = sql.con.prepareStatement(cmd);
-			int result = sql.pst.executeUpdate();
-
-			System.out.println(result + "개가 성공적으로 수정되었습니다.");
-
+			result = sql.pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
-	public void findPrice(String name) {
+	public int findPrice(String name) {
+		int price = 0;
 		try {
 			String cmd = "SELECT PRICE FROM PRODUCT WHERE NAME = '" + name + "'";
 
@@ -83,12 +85,11 @@ public class DBManagement {
 			sql.rs = sql.st.executeQuery(cmd);
 
 			sql.rs.next(); // 행 선택
-
-			int price = sql.rs.getInt("price");
-			System.out.println(name + "의 가격은 " + price + "원 입니다.");
-
+			price = sql.rs.getInt("price");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return price;
 	}
 }
