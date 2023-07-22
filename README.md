@@ -19,5 +19,3 @@
 6-2. 상품 조회, 입력, 삭제, 수정, 가격 찾기 DB 연동한 SQL문 코드 작성 완료
 
 7. 전체 코드 수정, ArrayList인 productList 삭제, 이름 중복 검증 메소드 Product의 compareName() => Product의 compare(), DBManagement의 compare() 수정
-
-기능 추가 예정
